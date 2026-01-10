@@ -1,6 +1,6 @@
 {
   "name": "@riotprompt/execution",
-  "version": "0.0.1",
+  "version": "0.0.2-dev.0",
   "description": "LLM execution provider interfaces - no SDK dependencies",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -47,4 +47,3 @@
     "vitest": "^3.2.4"
   }
 }
-
