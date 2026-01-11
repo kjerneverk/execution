@@ -1,6 +1,6 @@
 {
   "name": "@riotprompt/execution",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "LLM execution provider interfaces - no SDK dependencies",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -14,9 +14,13 @@
     }
   },
   "scripts": {
+    "clean": "rm -rf dist",
     "build": "vite build",
-    "test": "vitest run",
-    "lint": "eslint src"
+    "test": "vitest run --coverage",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src",
+    "precommit": "npm run lint && npm run test",
+    "prepublishOnly": "npm run clean && npm run build"
   },
   "keywords": [
     "llm",
@@ -31,13 +35,14 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kjerneverk/execution"
+    "url": "https://github.com/kjerneverk/execution"
   },
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^22.15.29",
     "@typescript-eslint/eslint-plugin": "^8.33.1",
     "@typescript-eslint/parser": "^8.33.1",
+    "@vitest/coverage-v8": "^3.2.4",
     "eslint": "^9.28.0",
     "eslint-plugin-import": "^2.31.0",
     "globals": "^16.2.0",
@@ -47,4 +52,3 @@
     "vitest": "^3.2.4"
   }
 }
-

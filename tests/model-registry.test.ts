@@ -8,7 +8,7 @@ import {
     supportsToolCalls,
     getModelFamily,
     configureModel,
-} from './model-registry';
+} from '../src/model-registry';
 
 describe('ModelRegistry', () => {
     let registry: ModelRegistry;

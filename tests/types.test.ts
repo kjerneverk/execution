@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { createRequest } from './types';
-import type { Message, Request, Provider, ProviderResponse, ExecutionOptions } from './types';
+import { createRequest } from '../src/types';
+import type { Message, Request, Provider, ProviderResponse, ExecutionOptions } from '../src/types';
 
 describe('types', () => {
     describe('createRequest', () => {

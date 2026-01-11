@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { DEFAULT_LOGGER, wrapLogger, LIBRARY_NAME, type Logger } from './logger';
+import { DEFAULT_LOGGER, wrapLogger, LIBRARY_NAME, type Logger } from '../src/logger';
 
 describe('logger', () => {
     describe('LIBRARY_NAME', () => {
