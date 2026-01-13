@@ -1,6 +1,6 @@
 {
   "name": "@riotprompt/execution",
-  "version": "0.0.4",
+  "version": "0.0.4-dev.0",
   "description": "LLM execution provider interfaces - no SDK dependencies",
   "type": "module",
   "main": "./dist/index.js",
