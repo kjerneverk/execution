@@ -1,6 +1,7 @@
 {
   "name": "@riotprompt/execution",
-  "version": "0.0.4",
+  "version": "1.0.0",
+  "_versionReset": "2026-01-15",
   "description": "LLM execution provider interfaces - no SDK dependencies",
   "type": "module",
   "main": "./dist/index.js",
@@ -20,7 +21,7 @@
     "test": "vitest run --coverage",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint src",
-    "precommit": "npm run lint && npm run test",
+    "precommit": "npm run build && npm run lint && npm run test",
     "prepublishOnly": "npm run clean && npm run build"
   },
   "keywords": [
