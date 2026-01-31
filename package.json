@@ -1,6 +1,6 @@
 {
-  "name": "@riotprompt/execution",
-  "version": "1.0.3-dev.0",
+  "name": "@kjerneverk/execution",
+  "version": "1.0.4",
   "_versionReset": "2026-01-15",
   "description": "LLM execution provider interfaces - no SDK dependencies",
   "type": "module",
