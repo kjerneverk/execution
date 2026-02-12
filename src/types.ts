@@ -49,6 +49,69 @@ export interface ToolCall {
     };
 }
 
+// ===== TOOL DEFINITION TYPES =====
+
+/**
+ * JSON Schema for tool parameters
+ */
+export interface ToolParameterSchema {
+    type: 'object';
+    properties: Record<string, {
+        type: string;
+        description?: string;
+        enum?: string[];
+        items?: { type: string };
+        default?: any;
+    }>;
+    required?: string[];
+    additionalProperties?: boolean;
+}
+
+/**
+ * Tool definition for LLM function calling
+ * Provider-agnostic format that maps to both Anthropic and OpenAI schemas
+ */
+export interface ToolDefinition {
+    /** Unique name for the tool (used in function calls) */
+    name: string;
+    /** Description of what the tool does (helps LLM decide when to use it) */
+    description: string;
+    /** JSON Schema defining the tool's parameters */
+    parameters: ToolParameterSchema;
+}
+
+// ===== STREAMING TYPES =====
+
+/**
+ * Type of streaming chunk
+ */
+export type StreamChunkType = 'text' | 'tool_call_start' | 'tool_call_delta' | 'tool_call_end' | 'usage' | 'done';
+
+/**
+ * A chunk from a streaming response
+ */
+export interface StreamChunk {
+    type: StreamChunkType;
+    /** Text content delta (for type='text') */
+    text?: string;
+    /** Tool call information (for tool_call_* types) */
+    toolCall?: {
+        /** Tool call ID (available on start and end) */
+        id?: string;
+        /** Index of this tool call in the response */
+        index?: number;
+        /** Function name (available on start) */
+        name?: string;
+        /** Arguments delta (for tool_call_delta) */
+        argumentsDelta?: string;
+    };
+    /** Usage information (for type='usage') */
+    usage?: {
+        inputTokens: number;
+        outputTokens: number;
+    };
+}
+
 /**
  * Message in a conversation (compatible with OpenAI format)
  */
@@ -70,6 +133,8 @@ export interface Request {
     model: Model;
     responseFormat?: any;
     validator?: any;
+    /** Tool definitions for function calling */
+    tools?: ToolDefinition[];
     addMessage(message: Message): void;
 }
 
@@ -127,9 +192,15 @@ export interface Provider {
     readonly name: string;
 
     /**
-     * Execute a request against this provider
+     * Execute a request against this provider (non-streaming)
      */
     execute(request: Request, options?: ExecutionOptions): Promise<ProviderResponse>;
+
+    /**
+     * Execute a request with streaming response
+     * Returns an async iterable of chunks
+     */
+    executeStream?(request: Request, options?: ExecutionOptions): AsyncIterable<StreamChunk>;
 
     /**
      * Check if this provider supports a given model
