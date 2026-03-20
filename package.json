@@ -1,6 +1,6 @@
 {
   "name": "@kjerneverk/execution",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "_versionReset": "2026-01-15",
   "description": "LLM execution provider interfaces - no SDK dependencies",
   "type": "module",
@@ -52,5 +52,8 @@
     "vite": "^7.0.4",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.0.18"
+  },
+  "publishConfig": {
+    "tag": "dev"
   }
 }
