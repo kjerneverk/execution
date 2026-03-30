@@ -11,6 +11,6 @@ input/
 **/.DS_Store
 
 output/
-.kodrdriv*package-lock.json
-.kodrdriv*
+.kodrdriv/*
+!.kodrdriv/config.yaml
 package-lock.json
